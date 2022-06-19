@@ -67,7 +67,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
         const quoted = m.quoted ? m.quoted : m
         const mime = (quoted.msg || quoted).mimetype || ''
 	const isMedia = /image|video|sticker|audio/.test(mime)
-	const reply = (teks) => {
+	const reply = (text) => {
                 hisoka.sendMessage(from, teks, text, {quoted:m})
             }
 	
