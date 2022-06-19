@@ -818,17 +818,17 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
 	break
 	case 'ban':
 		if (!isCreator) throw mess.owner
-		bnnd = body.slice(6)
+		bnnd = body.slice(0)
 		ban.push(`${bnnd}@s.whatsapp.net`)
 		fs.writeFileSync('./src/banned.json', JSON.stringify(ban))
-		m.reply(`Nomor ${bnnd}@s.whatsapp.net telah dibanned !`)
+		m.reply(`nomor ${bnnd}@s.whatsapp.net telah dibanned !`)
 	break
 	case 'unban':
 		if (!isCreator) throw mess.owner
-		bnnd = body.slice(8)
+		bnnd = body.slice(0)
 		ban.splice(`${bnnd}@s.whatsapp.net`, 1)
 		fs.writeFileSync('./src/banned.json', JSON.stringify(ban))
-		m.reply(`Nomor ${bnnd}@s.whatsapp.net telah di unban!`)
+		m.reply(`nomor ${bnnd}@s.whatsapp.net telah di unban!`)
 	break
         case 'unblock': {
 		if (!isCreator) throw mess.owner
@@ -2600,6 +2600,7 @@ case 'speedtest': {
             }
             break
             case 'list': case 'menu': case 'help': {
+		if (isBanned) return m.reply(ind.baned())
                 ana = `*Hai Kak ${m.pushName} Ada Yang Bisa Saya Bantu 😊*\n➤ _Nama Bot: ${packname}_\n➤ _Nama Owner: ${author}_\n➤ _Runtime: ${runtime(process.uptime())}_`
                 let btn = [{
                                 urlButton: {
