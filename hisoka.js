@@ -67,9 +67,6 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
         const quoted = m.quoted ? m.quoted : m
         const mime = (quoted.msg || quoted).mimetype || ''
 	const isMedia = /image|video|sticker|audio/.test(mime)
-	const reply = (text) => {
-                hisoka.sendMessage(from, teks, text, {quoted:m})
-            }
 	
         // Group
         const groupMetadata = m.isGroup ? await hisoka.groupMetadata(m.chat).catch(e => {}) : ''
@@ -824,14 +821,14 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
 		bnnd = body.slice(6)
 		ban.push(`${bnnd}@s.whatsapp.net`)
 		fs.writeFileSync('./src/banned.json', JSON.stringify(ban))
-		reply(`Nomor wa.me/${bnnd} telah dibanned !`)
+		m.reply(`Nomor wa.me/${bnnd} telah dibanned !`)
 	break
 	case 'unban':
 		if (!isCreator) throw mess.owner
 		bnnd = body.slice(8)
 		ban.splice(`${bnnd}@s.whatsapp.net`, 1)
 		fs.writeFileSync('./src/banned.json', JSON.stringify(ban))
-		reply(`Nomor wa.me/${bnnd} telah di unban!`)
+		m.reply(`Nomor wa.me/${bnnd} telah di unban!`)
 	break
         case 'unblock': {
 		if (!isCreator) throw mess.owner
