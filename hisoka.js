@@ -821,14 +821,14 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
 		bnnd = body.slice(6)
 		ban.push(`${bnnd}@s.whatsapp.net`)
 		fs.writeFileSync('./src/banned.json', JSON.stringify(ban))
-		m.reply(`Nomor wa.me/${bnnd} telah dibanned !`)
+		m.reply(`Nomor ${bnnd}@s.whatsapp.net telah dibanned !`)
 	break
 	case 'unban':
 		if (!isCreator) throw mess.owner
 		bnnd = body.slice(8)
 		ban.splice(`${bnnd}@s.whatsapp.net`, 1)
 		fs.writeFileSync('./src/banned.json', JSON.stringify(ban))
-		m.reply(`Nomor wa.me/${bnnd} telah di unban!`)
+		m.reply(`Nomor ${bnnd}@s.whatsapp.net telah di unban!`)
 	break
         case 'unblock': {
 		if (!isCreator) throw mess.owner
