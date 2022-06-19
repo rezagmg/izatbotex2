@@ -1,3 +1,3 @@
 exports.baned = () => {
-	return`*ANDA TERKENA BANNED*`
+	return`*ANDA TERKENA BANNED 😀*`
 }
