@@ -61,11 +61,15 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
         const pushname = m.pushName || "No Name"
         const botNumber = await hisoka.decodeJid(hisoka.user.id)
         const isCreator = [botNumber, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+	const isBanned = ban.includes(m.sender)
         const itsMe = m.sender == botNumber ? true : false
         const text = q = args.join(" ")
         const quoted = m.quoted ? m.quoted : m
         const mime = (quoted.msg || quoted).mimetype || ''
-	    const isMedia = /image|video|sticker|audio/.test(mime)
+	const isMedia = /image|video|sticker|audio/.test(mime)
+	const reply = (teks) => {
+                akira.sendMessage(from, teks, text, {quoted:m})
+            }
 	
         // Group
         const groupMetadata = m.isGroup ? await hisoka.groupMetadata(m.chat).catch(e => {}) : ''
