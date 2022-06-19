@@ -818,17 +818,17 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
 	break
 	case 'ban':
 		if (!isCreator) throw mess.owner
-		bnnd = body.slice(0)
+		bnnd = body.slice(6)
 		ban.push(`${bnnd}@s.whatsapp.net`)
 		fs.writeFileSync('./src/banned.json', JSON.stringify(ban))
-		m.reply(`nomor ${bnnd}@s.whatsapp.net telah dibanned !`)
+		m.reply(`${bnnd}@s.whatsapp.net`)
 	break
 	case 'unban':
 		if (!isCreator) throw mess.owner
-		bnnd = body.slice(0)
+		bnnd = body.slice(8)
 		ban.splice(`${bnnd}@s.whatsapp.net`, 1)
 		fs.writeFileSync('./src/banned.json', JSON.stringify(ban))
-		m.reply(`nomor ${bnnd}@s.whatsapp.net telah di unban!`)
+		m.reply(`${bnnd}@s.whatsapp.net`)
 	break
         case 'unblock': {
 		if (!isCreator) throw mess.owner
