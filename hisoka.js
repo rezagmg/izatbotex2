@@ -1254,6 +1254,7 @@ break
             }
 	    break
             case 'listpc': {
+		 if (isBanned) return m.reply(ind.baned())
                  let anu = await store.chats.all().filter(v => v.id.endsWith('.net')).map(v => v.id)
                  let teks = `⬣ *LIST PERSONAL CHAT*\n\nTotal Chat : ${anu.length} Chat\n\n`
                  for (let i of anu) {
@@ -1264,6 +1265,7 @@ break
              }
              break
                 case 'listgc': {
+	         if (isBanned) return m.reply(ind.baned())
                  let anu = await store.chats.all().filter(v => v.id.endsWith('@g.us')).map(v => v.id)
                  let teks = `⬣ *LIST GROUP CHAT*\n\nTotal Group : ${anu.length} Group\n\n`
                  for (let i of anu) {
@@ -1279,6 +1281,7 @@ break
                     hisoka.sendText(m.chat, 'List Online:\n\n' + online.map(v => '⭔ @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
              }
              break
+	    if (isBanned) return m.reply(ind.baned())
             case 'sticker': case 's': case 'stickergif': case 'sgif': {
             if (!quoted) throw `Balas Video/Image Dengan Caption ${prefix + command}`
             m.reply(mess.wait)
@@ -1313,6 +1316,7 @@ break
         }
         break
             case 'emojimix': {
+		if (isBanned) return m.reply(ind.baned())
 	        if (!text) throw `Example : ${prefix + command} 😅+🤔`
 		let [emoji1, emoji2] = text.split`+`
 		let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
@@ -1323,6 +1327,7 @@ break
 	    }
         break
            case 'attp': case 'ttp': {
+	   if (isBanned) return m.reply(ind.baned())
            if (!text) throw `Example : ${prefix + command} text`
            m.reply(mess.wait)
            await hisoka.sendMedia(m.chat, `https://xteam.xyz/${command}?file&text=${text}`, 'izatbotex', 'Rezadevv', m, {asSticker: true})
@@ -1330,6 +1335,7 @@ break
          }
          break
            case 'smeme': case 'stickmeme': case 'stikmeme': case 'stickermeme': case 'stikermeme': {
+	    if (isBanned) return m.reply(ind.baned())
             let respond = `Kirim/reply image/sticker dengan caption ${prefix + command} text1|text2`
             if (!/image/.test(mime)) throw respond
             if (!text) throw respond
@@ -1345,6 +1351,7 @@ break
             }
 	    break
             case 'toimage': case 'toimg': {
+		if (isBanned) return m.reply(ind.baned())
                 if (!quoted) throw 'Reply Image'
                 if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
                 m.reply(mess.wait)
@@ -1360,6 +1367,7 @@ break
             }
             break
 	        case 'tomp4': case 'tovideo': {
+		if (isBanned) return m.reply(ind.baned())
                 if (!quoted) throw 'Reply Image'
                 if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
                 m.reply(mess.wait)
@@ -1371,6 +1379,7 @@ break
             }
             break
             case 'toaud': case 'toaudio': {
+	    if (isBanned) return m.reply(ind.baned())
             if (!/video/.test(mime) && !/audio/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan Audio Dengan Caption ${prefix + command}`
             if (!quoted) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan Audio Dengan Caption ${prefix + command}`
             m.reply(mess.wait)
@@ -1381,6 +1390,7 @@ break
             }
             break
             case 'tomp3': {
+	    if (isBanned) return m.reply(ind.baned())
             if (/document/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan MP3 Dengan Caption ${prefix + command}`
             if (!/video/.test(mime) && !/audio/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan MP3 Dengan Caption ${prefix + command}`
             if (!quoted) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan MP3 Dengan Caption ${prefix + command}`
@@ -1392,6 +1402,7 @@ break
             }
             break
             case 'tovn': case 'toptt': {
+            if (isBanned) return m.reply(ind.baned())
             if (!/video/.test(mime) && !/audio/.test(mime)) throw `Reply Video/Audio Yang Ingin Dijadikan VN Dengan Caption ${prefix + command}`
             if (!quoted) throw `Reply Video/Audio Yang Ingin Dijadikan VN Dengan Caption ${prefix + command}`
             m.reply(mess.wait)
@@ -1413,6 +1424,7 @@ break
             }
             break
 	        case 'tourl': {
+		if (isBanned) return m.reply(ind.baned())
                 m.reply(mess.wait)
 		let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
                 let media = await hisoka.downloadAndSaveMediaMessage(quoted)
@@ -1452,6 +1464,7 @@ break
 	    }
 	    break
 	    case 'yts': case 'ytsearch': {
+		if (isBanned) return m.reply(ind.baned())
                 if (!text) throw `Example : ${prefix + command} story wa anime`
                 let yts = require("yt-search")
                 let search = await yts(text)
@@ -1539,6 +1552,7 @@ break
             }
             break
             case 'ytmp4': case 'ytvideo': {
+		if (isBanned) return m.reply(ind.baned())
                 let { ytv } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 360p`
                 let quality = args[1] ? args[1] : '360p'
@@ -1548,6 +1562,7 @@ break
             }
             break
 	    case 'getmusic': {
+		if (isBanned) return m.reply(ind.baned())
                 let { yta } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} 1`
                 if (!m.quoted) return m.reply('Reply Pesan')
@@ -1562,6 +1577,7 @@ break
             }
             break
             case 'getvideo': {
+		if (isBanned) return m.reply(ind.baned())
                 let { ytv } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} 1`
                 if (!m.quoted) return m.reply('Reply Pesan')
@@ -1575,6 +1591,7 @@ break
             }
             break
             case 'pinterest': {
+		if (isBanned) return m.reply(ind.baned())
                 m.reply(mess.wait)
 		let { pinterest } = require('./lib/scraper')
                 anu = await pinterest(text)
@@ -1589,6 +1606,7 @@ break
             }
             break
 	    case 'couple': {
+		if (isBanned) return m.reply(ind.baned())
                 m.reply(mess.wait)
                 let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
                 let random = anu[Math.floor(Math.random() * anu.length)]
@@ -1597,6 +1615,7 @@ break
             }
 	    break
             case 'coffe': case 'kopi': {
+	    if (isBanned) return m.reply(ind.baned())
             let buttons = [
                     {buttonId: `coffe`, buttonText: {displayText: 'Next Image'}, type: 1}
                 ]
@@ -1677,11 +1696,13 @@ break
             }
             break
 		case 'darkjoke': case 'cosplay': case 'meme': case 'memeindo': case 'patrick': {
+		if (isBanned) return m.reply(ind.baned())
                 m.reply(mess.wait)
                 hisoka.sendMessage(m.chat, { image: { url: api('zenz', '/randomimage/' + command, {}, 'apikey') }, caption: `Generate ${command}` }, { quoted: m})
 	    }
             break
             case 'pornhub': {
+		if (isBanned) return m.reply(ind.baned())
                 if (!text) throw `Example : ${prefix + command} text1|text2`
                 m.reply(mess.wait)
                 atas = text.split('|')[0] ? text.split('|')[0] : '-'
@@ -1889,6 +1910,7 @@ break
             }
             break
             case 'weton': case 'wetonjawa': {
+		if (isBanned) return m.reply(ind.baned())
                 if (!text) throw `Example : ${prefix + command} 7, 7, 2005`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.weton_jawa(tgl, bln, thn)
@@ -1897,6 +1919,7 @@ break
             }
             break
             case 'sifat': case 'karakter': {
+		if (isBanned) return m.reply(ind.baned())
                 if (!text) throw `Example : ${prefix + command} Dika, 7, 7, 2005`
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.sifat_karakter_tanggal_lahir(nama, tgl, bln, thn)
@@ -1971,6 +1994,7 @@ break
             }
             break
 	    case 'stalker': case 'stalk': {
+		if (isBanned) return m.reply(ind.baned())
 		if (!isPremium && global.db.users[m.sender].limit < 1) return m.reply('Limit Harian Anda Telah Habis')
                 if (!text) return m.reply(`Example : ${prefix +command} type id\n\nList Type :\n1. ff (Free Fire)\n2. ml (Mobile Legends)\n3. aov (Arena Of Valor)\n4. cod (Call Of Duty)\n5. pb (point Blank)\n6. ig (Instagram)\n7. npm (https://npmjs.com)`)
                 let [type, id, zone] = args
@@ -2023,6 +2047,7 @@ break
             }
             break
 	        case 'tiktok': case 'tiktoknowm': {
+		if (isBanned) return m.reply(ind.baned())
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
@@ -2041,6 +2066,7 @@ break
             }
             break
             case 'tiktokwm': case 'tiktokwatermark': {
+		if (isBanned) return m.reply(ind.baned())
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/tiktok', { url: text }, 'apikey'))
@@ -2059,6 +2085,7 @@ break
             }
             break
             case 'tiktokmp3': case 'tiktokaudio': {
+		if (isBanned) return m.reply(ind.baned())
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/musically', { url: text }, 'apikey'))
@@ -2379,6 +2406,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
             }
             break
             case 'getmsg': {
+		if (isBanned) return m.reply(ind.baned())
                 if (!text) throw `Example : ${prefix + command} file name\n\nLihat list pesan dengan ${prefix}listmsg`
                 let msgs = global.db.database
                 if (!(text.toLowerCase() in msgs)) throw `'${text}' tidak terdaftar di list pesan`
@@ -2386,6 +2414,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
             }
             break
             case 'listmsg': {
+		if (isBanned) return m.reply(ind.baned())
                 let msgs = JSON.parse(fs.readFileSync('./src/database.json'))
 	        let seplit = Object.entries(global.db.database).map(([nama, isi]) => { return { nama, ...isi } })
 		let teks = '「 LIST DATABASE 」\n\n'
@@ -2649,6 +2678,7 @@ hisoka.send5ButImg(m.chat, asa, hisoka.user.name, sdk, btn)
 }
 break
 case 'thx': case 'thanksto': { 
+if (isBanned) return m.reply(ind.baned())
 var jck = await getBuffer(picak+'Terimakasih Kepada')
 asu = `*「 THANKS TO 」*\n➤ *Rezadevv*\n➤ *Firman*\n➤ *Dika Ardnt*\n➤ *Penyedia Rest Api*\n➤ *My Support*`
 let btn = [{
@@ -2675,6 +2705,7 @@ hisoka.send5ButImg(m.chat, asu, hisoka.user.name, jck, btn)
             }
             break
             case 'allmenu': case 'command': {
+	    if (isBanned) return m.reply(ind.baned())
             var flob = await getBuffer(picak+'Semua Menu')
                 anu = `┌──⭓ *Group Menu*
 │
