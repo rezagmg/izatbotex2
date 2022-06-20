@@ -1279,7 +1279,7 @@ for (let medog of ban) {
 teks += `- ${medog}\n`
 }
 teks += `\n*Total : ${ban.length}*`
-hisoka.sendMessage(from, { text: teks.trim() }, 'extendedTextMessage', { quoted: m, contextInfo: { "mentionedJid": ban } })
+hisoka.sendMessage(m.chat, { text: teks.trim() }, 'extendedTextMessage', { quoted: m, contextInfo: { "mentionedJid": ban } })
              break
                 case 'listgc': {
                  if (isBanned) return m.reply(ind.baned())
