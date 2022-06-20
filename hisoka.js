@@ -2130,6 +2130,64 @@ hisoka.sendMessage(m.chat, { text: teks.trim() }, 'extendedTextMessage', { quote
                 hisoka.sendMessage(m.chat, { audio: { url: anu.result.audio }, mimetype: 'audio/mpeg'}, { quoted: msg })
             }
             break
+            /** Alternatif **/
+            case 'tiktokmc': {
+                if (isBanned) return m.reply(ind.baned())
+                if (!text) throw 'Masukkan Query Link!'
+                m.reply(mess.wait)
+                let anu = await fetchJson(api('zenz', '/downloader/musically', { url: text }, 'apikey'))
+                let buttons = [
+                    {buttonId: `tiktokmcwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1},
+                    {buttonId: `tiktokmcmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
+                ]
+                let buttonMessage = {
+                    video: { url: anu.result.nowm },
+                    caption: `Download From ${text}`,
+                    footer: 'Tekan Tombol Di Bawah',
+                    buttons: buttons,
+                    headerType: 5
+                }
+                hisoka.sendMessage(m.chat, buttonMessage, { quoted: m })
+            }
+            break
+            case 'tiktokmcwm': {
+                if (isBanned) return m.reply(ind.baned())
+                if (!text) throw 'Masukkan Query Link!'
+                m.reply(mess.wait)
+                let anu = await fetchJson(api('zenz', '/downloader/musically', { url: text }, 'apikey'))
+                let buttons = [
+                    {buttonId: `tiktokmc ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
+                    {buttonId: `tiktokmcmp3 ${text}`, buttonText: {displayText: '♫ Audio'}, type: 1}
+                ]
+                let buttonMessage = {
+                    video: { url: anu.result.video_original },
+                    caption: `Download From ${text}`,
+                    footer: 'Tekan Tombol Di Bawah',
+                    buttons: buttons,
+                    headerType: 5
+                }
+                hisoka.sendMessage(m.chat, buttonMessage, { quoted: m })
+            }
+            break
+            case 'tiktokmcmp3': {
+                if (isBanned) return m.reply(ind.baned())
+                if (!text) throw 'Masukkan Query Link!'
+                m.reply(mess.wait)
+                let anu = await fetchJson(api('zenz', '/downloader/musically', { url: text }, 'apikey'))
+                let buttons = [
+                    {buttonId: `tiktokmc ${text}`, buttonText: {displayText: '► No Watermark'}, type: 1},
+                    {buttonId: `tiktokmcwm ${text}`, buttonText: {displayText: '► With Watermark'}, type: 1}
+                ]
+                let buttonMessage = {
+                    text: `Download From ${text}`,
+                    footer: 'Tekan Tombol Di Bawah',
+                    buttons: buttons,
+                    headerType: 2
+                }
+                let msg = await hisoka.sendMessage(m.chat, buttonMessage, { quoted: m })
+                hisoka.sendMessage(m.chat, { audio: { url: anu.result.audio }, mimetype: 'audio/mpeg'}, { quoted: msg })
+            }
+            break
             case 'instagram': case 'ig': case 'igdl': {
                 if (!text) throw 'No Query Url!'
                 m.reply(mess.wait)
@@ -2909,6 +2967,8 @@ hisoka.send5ButImg(m.chat, asu, hisoka.user.name, jck, btn)
 │⭔ ${prefix}tiktoknowm [url]
 │⭔ ${prefix}tiktokwm [url]
 │⭔ ${prefix}tiktokmp3 [url]
+│⭔ ${prefix}tiktokmc [url]
+│⭔ ${prefix}tiktokmcmp3 [url]
 │⭔ ${prefix}instagram [url]
 │⭔ ${prefix}twitter [url]
 │⭔ ${prefix}twittermp3 [url]
