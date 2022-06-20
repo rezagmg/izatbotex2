@@ -1271,6 +1271,15 @@ break
                  }
                  hisoka.sendTextWithMentions(m.chat, teks, m)
              }
+            break
+case 'listban': case 'lisbanned':
+if (!isCreator) throw mess.owner
+teks = '*List Banned*\n\n'
+for (let hisoka of ban) {
+teks += `- ${hisoka}\n`
+}
+teks += `\n*Total : ${ban.length}*`
+hisoka.sendMessage(from, { text: teks.trim() }, 'extendedTextMessage', { quoted: m, contextInfo: { "mentionedJid": ban } })
              break
                 case 'listgc': {
                  if (isBanned) return m.reply(ind.baned())
