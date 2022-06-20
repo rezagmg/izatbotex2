@@ -1236,6 +1236,7 @@ break
             }
             break
             case 'infochat': {
+                if (isBanned) return m.reply(ind.baned())
                 if (!m.quoted) m.reply('Reply Pesan')
                 let msg = await m.getQuotedObj()
                 if (!m.quoted.isBaileys) throw 'Pesan tersebut bukan dikirim oleh bot!'
@@ -1280,13 +1281,14 @@ break
              }
              break
              case 'listonline': case 'liston': {
+                    if (isBanned) return m.reply(ind.baned())
                     let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
                     let online = [...Object.keys(store.presences[id]), botNumber]
                     hisoka.sendText(m.chat, 'List Online:\n\n' + online.map(v => '⭔ @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
              }
              break
-            if (isBanned) return m.reply(ind.baned())
             case 'sticker': case 's': case 'stickergif': case 'sgif': {
+            if (isBanned) return m.reply(ind.baned())
             if (!quoted) throw `Balas Video/Image Dengan Caption ${prefix + command}`
             m.reply(mess.wait)
                     if (/image/.test(mime)) {
@@ -1481,6 +1483,7 @@ break
             }
             break
         case 'google': {
+                if (isBanned) return m.reply(ind.baned())
                 if (!text) throw `Example : ${prefix + command} fatih arridho`
                 let google = require('google-it')
                 google({'query': text}).then(res => {
@@ -1495,6 +1498,7 @@ break
                 }
                 break
         case 'gimage': {
+        if (isBanned) return m.reply(ind.baned())
         if (!text) throw `Example : ${prefix + command} kaori cicak`
         let gis = require('g-i-s')
         gis(text, async (error, result) => {
@@ -1517,6 +1521,7 @@ break
         }
         break
         case 'play': case 'ytplay': {
+                if (isBanned) return m.reply(ind.baned())
                 if (!text) throw `Example : ${prefix + command} story wa anime`
                 let yts = require("yt-search")
                 let search = await yts(text)
@@ -1546,6 +1551,7 @@ break
             }
             break
         case 'ytmp3': case 'ytaudio': {
+            if (isBanned) return m.reply(ind.baned())
                 let { yta } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
                 let quality = args[1] ? args[1] : '128kbps'
@@ -1634,6 +1640,7 @@ break
             }
             break
             case 'wallpaper': {
+                if (isBanned) return m.reply(ind.baned())
                 if (!text) throw 'Masukkan Query Title'
         let { wallpaper } = require('./lib/scraper')
                 anu = await wallpaper(text)
@@ -1652,6 +1659,7 @@ break
             }
             break
             case 'wikimedia': {
+                if (isBanned) return m.reply(ind.baned())
                 if (!text) throw 'Masukkan Query Title'
         let { wikimedia } = require('./lib/scraper')
                 anu = await wikimedia(text)
@@ -1958,6 +1966,7 @@ break
             }
             break
             case 'zodiak': case 'zodiac': {
+                if (isBanned) return m.reply(ind.baned())
                 if (!text) throw `Example : ${prefix+ command} 7 7 2005`
                 let zodiak = [
                     ["capricorn", new Date(1970, 0, 1)],
@@ -2148,6 +2157,7 @@ break
             }
             break
             case 'twitdl': case 'twitter': {
+                if (isBanned) return m.reply(ind.baned())
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, 'apikey'))
@@ -2165,6 +2175,7 @@ break
             }
             break
             case 'twittermp3': case 'twitteraudio': {
+                if (isBanned) return m.reply(ind.baned())
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, 'apikey'))
@@ -2190,6 +2201,7 @@ break
             }
             break
             case 'pindl': case 'pinterestdl': {
+                if (isBanned) return m.reply(ind.baned())
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/pinterestdl', { url: text }, 'apikey'))
@@ -2197,6 +2209,7 @@ break
             }
             break
             case 'umma': case 'ummadl': {
+            if (isBanned) return m.reply(ind.baned())
             if (!text) throw `Example : ${prefix + command} https://umma.id/channel/video/post/gus-arafat-sumber-kecewa-84464612933698`
                 let { umma } = require('./lib) scraper')
         let anu = await umma(isUrl(text)[0])
