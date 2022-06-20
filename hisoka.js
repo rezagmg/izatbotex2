@@ -1275,8 +1275,8 @@ break
 case 'listban': case 'lisbanned':
 if (!isCreator) throw mess.owner
 teks = '*List Banned*\n\n'
-for (let hisoka of ban) {
-teks += `- ${hisoka}\n`
+for (let medog of ban) {
+teks += `- ${medog}\n`
 }
 teks += `\n*Total : ${ban.length}*`
 hisoka.sendMessage(from, { text: teks.trim() }, 'extendedTextMessage', { quoted: m, contextInfo: { "mentionedJid": ban } })
