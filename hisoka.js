@@ -3173,6 +3173,7 @@ hisoka.send5ButImg(m.chat, asu, hisoka.user.name, jck, btn)
 │⭔ ${prefix}chat [option]
 │⭔ ${prefix}join [link]
 │⭔ ${prefix}leave
+│⭔ ${prefix}listban
 │⭔ ${prefix}ban 6285xxxxxxxxx
 │⭔ ${prefix}unban 6285xxxxxxxxx
 │⭔ ${prefix}block @user
